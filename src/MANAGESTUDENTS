@@ -1,0 +1,83 @@
+create database managerstudents;
+use managerstudents;
+create table address
+(
+    id      int auto_increment primary key,
+    address nvarchar(100) not null
+);
+create table classes
+(
+    id          int auto_increment primary key,
+    name        nvarchar(10) not null,
+    language    varchar(20)  not null,
+    description nvarchar(200)
+);
+create table students
+(
+    id         int auto_increment primary key,
+    fullname   nvarchar(30) not null,
+    phone      varchar(10) unique,
+    address_id int,
+    foreign key (address_id) references address (id),
+    class_id   int,
+    foreign key (class_id) references classes (id)
+);
+create table course
+(
+    id          int auto_increment primary key,
+    name        nvarchar(30) not null,
+    description nvarchar(200)
+);
+create table point
+(
+    id         int auto_increment primary key,
+    point      int not null,
+    course_id  int,
+    foreign key (course_id) references course (id),
+    student_id int,
+    foreign key (student_id) references students (id)
+);
+insert into address(id,address) values (1,'Nghệ An');
+insert into address(id,address) values (2,'Thái Bình');
+insert into address(id,address) values (3,'Hải Dương');
+insert into address(id,address) values (4,'Hà Nội');
+insert into address(id,address) values (5,'Nam Định');
+
+insert into classes values (1,'Khải','java','đập chai');
+insert into classes values (2,'Toàn','java','đập chai');
+insert into classes values (3,'Tùng','java','đập chai');
+insert into classes values (4,'Hiếu','java','đập chai');
+insert into classes values (5,'Mừng','java','đập chai');
+
+insert into students values (1,'Trịnh Công Khải','0983082795',1,1);
+insert into students values (2,'Đặng Văn Toàn','098xxxxxxx',2,2);
+insert into students values (3,'Nguyễn Văn Tùng','096xxxxxxx',3,3);
+insert into students values (4,'Ngô Minh Hiếu','091xxxxxxx',4,4);
+insert into students values (5,'Vũ Văn Mừng','094xxxxxxx',5,5);
+insert into students values (6,'Nguyễn Văn Duyệt','0986xxxxxx',4,5);
+insert into students values (7,'Nguyễn Công Duy','0988xxxxxx',3,4);
+insert into students values (8,'Mai Quốc Hưng','097xxxxxxx',2,3);
+insert into students values (9,'Phan Thế Kỷ','0977xxxxxx',1,2);
+insert into students values (10,'Nguyễn Phúc Thanh','0978xxxxxx',1,5);
+
+insert into course(id,name,description) values (1,'java fulltime','...');
+insert into course(id,name,description) values (2,'Php fulltime','...');
+insert into course(id,name,description) values (3,'.net fulltime','...');
+insert into course(id,name,description) values (4,'python fulltime','...');
+insert into course(id,name,description) values (5,'C++ fulltime','...');
+
+insert into point(id, point, course_id, student_id) values (1,10,1,1);
+insert into point(id, point, course_id, student_id) values (2,8,2,2);
+insert into point(id, point, course_id, student_id) values (3,7,3,3);
+insert into point(id, point, course_id, student_id) values (4,9,4,4);
+insert into point(id, point, course_id, student_id) values (5,5,5,5);
+insert into point(id, point, course_id, student_id) values (6,7,5,6);
+insert into point(id, point, course_id, student_id) values (7,8,4,7);
+insert into point(id, point, course_id, student_id) values (8,4,3,8);
+insert into point(id, point, course_id, student_id) values (9,10,2,9);
+insert into point(id, point, course_id, student_id) values (10,6,1,10);
+insert into point(id, point, course_id, student_id) values (11,8,1,5);
+insert into point(id, point, course_id, student_id) values (12,2,2,9);
+insert into point(id, point, course_id, student_id) values (13,10,3,8);
+insert into point(id, point, course_id, student_id) values (14,9,4,7);
+insert into point(id, point, course_id, student_id) values (15,8,5,6);
